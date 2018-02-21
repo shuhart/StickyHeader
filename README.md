@@ -1,5 +1,5 @@
 # StickyHeader
-The ItemDecorator is used to display sticky headers. For performance reason a header view is created only once. View types are not supported.
+It was done mainly because almost all popular libraries for sticky headers are too complex or offer a lot more features than needed. Some of them also breaks DiffUtils. For performance reason a header view is created only once. View types are not supported.
 However, you can customize this view via supplied adapter when a sticky header replaces the previous one.
 
 <img src="/images/small_demo.gif" alt="Sample" width="300px" />
