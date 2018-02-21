@@ -15,7 +15,6 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
     private int currentStickyPosition = RecyclerView.NO_POSITION;
     private RecyclerView recyclerView;
     private RecyclerView.ViewHolder currentStickyHolder;
-    private RecyclerView.ViewHolder savedHolder;
 
     public StickyHeaderItemDecorator(@NonNull StickyAdapter adapter) {
         this.adapter = adapter;
@@ -31,7 +30,6 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
         this.recyclerView = recyclerView;
         if (recyclerView != null) {
             currentStickyHolder = adapter.onCreateHeaderViewHolder(recyclerView);
-            savedHolder = adapter.onCreateHeaderViewHolder(recyclerView);
             fixLayoutSize();
             setupCallbacks();
         }
@@ -96,13 +94,10 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
     private void updateStickyHeader(int topChildPosition, int contactChildPosition) {
         int headerPositionForItem = adapter.getHeaderPositionForItem(topChildPosition);
         if (headerPositionForItem != currentStickyPosition) {
-            if (contactChildPosition != RecyclerView.NO_POSITION) {
-                adapter.onBindHeaderViewHolder(savedHolder, headerPositionForItem);
-            }
             adapter.onBindHeaderViewHolder(currentStickyHolder, headerPositionForItem);
             currentStickyPosition = headerPositionForItem;
         } else if (contactChildPosition != RecyclerView.NO_POSITION) {
-            adapter.onBindHeaderViewHolder(savedHolder, headerPositionForItem);
+            adapter.onBindHeaderViewHolder(currentStickyHolder, headerPositionForItem);
         }
     }
 
@@ -117,7 +112,6 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
         c.save();
         c.translate(0, nextHeader.getTop() - nextHeader.getHeight());
         currentStickyHolder.itemView.draw(c);
-        savedHolder.itemView.draw(c);
         c.restore();
     }
 
@@ -158,12 +152,6 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
                 currentStickyHolder.itemView.measure(childWidthSpec, childHeightSpec);
 
                 currentStickyHolder.itemView.layout(0, 0,
-                        currentStickyHolder.itemView.getMeasuredWidth(),
-                        currentStickyHolder.itemView.getMeasuredHeight());
-
-                savedHolder.itemView.measure(childWidthSpec, childHeightSpec);
-
-                savedHolder.itemView.layout(0, 0,
                         currentStickyHolder.itemView.getMeasuredWidth(),
                         currentStickyHolder.itemView.getMeasuredHeight());
             }
