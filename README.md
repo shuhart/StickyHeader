@@ -8,7 +8,7 @@ Usage
 -----
 
 1. Add jcenter() to repositories block in your gradle file.
-2. Add `implementation 'com.shuhart.stickyheader:stickyheader:1.0'` to your dependencies.
+2. Add `implementation 'com.shuhart.stickyheader:stickyheader:1.0.1'` to your dependencies.
 3. Look into the sample for additional details on how to use and configure the library.
 
 You should provide an adapter that extends [StickyAdapter](https://github.com/shuhart/StickyHeader/blob/master/stickyheader/src/main/java/com/shuhart/stickyheader/StickyAdapter.java) to the StickyHeaderItemDecorator that is used to create and bind sticky headers.

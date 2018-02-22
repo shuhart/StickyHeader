@@ -19,7 +19,7 @@ public abstract class StickyAdapter<SVH extends RecyclerView.ViewHolder,
      *                     the search of the position of the header item.
      * @return int. Position of the header item in the adapter.
      */
-    abstract int getHeaderPositionForItem(int itemPosition);
+    public abstract int getHeaderPositionForItem(int itemPosition);
 
     /**
      * This method gets called by {@link StickyHeaderItemDecorator} to setup the header View.
@@ -27,7 +27,7 @@ public abstract class StickyAdapter<SVH extends RecyclerView.ViewHolder,
      * @param holder         RecyclerView.ViewHolder. Holder to bind the data on.
      * @param headerPosition int. Position of the header item in the adapter.
      */
-    abstract void onBindHeaderViewHolder(SVH holder, int headerPosition);
+    public abstract void onBindHeaderViewHolder(SVH holder, int headerPosition);
 
     /**
      * Called only twice when {@link StickyHeaderItemDecorator} needs
@@ -46,5 +46,5 @@ public abstract class StickyAdapter<SVH extends RecyclerView.ViewHolder,
      * @return A new ViewHolder that holds a View of the given view type.
      * @see #onBindHeaderViewHolder(RecyclerView.ViewHolder, int)
      */
-    abstract SVH onCreateHeaderViewHolder(ViewGroup parent);
+    public abstract SVH onCreateHeaderViewHolder(ViewGroup parent);
 }
