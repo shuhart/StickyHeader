@@ -93,7 +93,7 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
     @SuppressWarnings("unchecked")
     private void updateStickyHeader(int topChildPosition, int contactChildPosition) {
         int headerPositionForItem = adapter.getHeaderPositionForItem(topChildPosition);
-        if (headerPositionForItem != currentStickyPosition) {
+        if (headerPositionForItem != currentStickyPosition && headerPositionForItem != RecyclerView.NO_POSITION) {
             adapter.onBindHeaderViewHolder(currentStickyHolder, headerPositionForItem);
             currentStickyPosition = headerPositionForItem;
         } else if (contactChildPosition != RecyclerView.NO_POSITION) {

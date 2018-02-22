@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SectionAdapter extends StickyHeaderItemDecorator.StickyAdapter<RecyclerView.ViewHolder, RecyclerView.ViewHolder> {
+public class SectionAdapter extends StickyAdapter<RecyclerView.ViewHolder, RecyclerView.ViewHolder> {
     List<Section> items = new ArrayList<>();
 
     @Override
@@ -44,18 +44,18 @@ public class SectionAdapter extends StickyHeaderItemDecorator.StickyAdapter<Recy
     }
 
     @Override
-    int getHeaderPositionForItem(int itemPosition) {
+    public int getHeaderPositionForItem(int itemPosition) {
         return items.get(itemPosition).section();
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int headerPosition) {
+    public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int headerPosition) {
         ((HeaderViewholder) holder).textView.setText("Header " + headerPosition);
     }
 
     @Override
-    RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+    public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
         return createViewHolder(parent, Section.HEADER);
     }
 
