@@ -25,8 +25,8 @@ decorator.attachToRecyclerView(recyclerView);
 
 How it works
 -----
-A ViewHolder is created by the adapter to reuse and bind every header.
-A header view is drawn on top of the RecyclerView using onDrawOver() callback of ItemDecoration.
+* A ViewHolder is created by the adapter to reuse and bind every header.
+* A header view is drawn on top of the RecyclerView using onDrawOver() callback of ItemDecoration.
 
 License
 =======
