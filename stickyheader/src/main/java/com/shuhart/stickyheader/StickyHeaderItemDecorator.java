@@ -66,28 +66,18 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
             return;
         }
 
-        RecyclerView.ViewHolder viewHolder = parent.findViewHolderForAdapterPosition(topChildPosition);
-        if (viewHolder == null || viewHolder.itemView.getLayoutParams().width == 0) {
+        View viewOverlappedByHeader = getChildInContact(parent, currentStickyHolder.itemView.getBottom());
+        if (viewOverlappedByHeader == null) {
             return;
         }
-
-        int contactPoint = viewHolder.itemView.getBottom();
-        View childInContact = getChildInContact(parent, contactPoint);
-        if (childInContact == null) {
-            return;
-        }
-
-        int childPosition = parent.getChildAdapterPosition(childInContact);
-
-        if (adapter.getHeaderPositionForItem(childPosition) == childPosition) {
-            updateStickyHeader(topChildPosition, childPosition);
-            moveHeader(c, childInContact);
-            return;
+        int overlappedByHeaderPosition = parent.getChildAdapterPosition(viewOverlappedByHeader);
+        if (adapter.getHeaderPositionForItem(overlappedByHeaderPosition) == overlappedByHeaderPosition) {
+            updateStickyHeader(topChildPosition, overlappedByHeaderPosition);
+            moveHeader(c, viewOverlappedByHeader);
         } else {
             updateStickyHeader(topChildPosition, RecyclerView.NO_POSITION);
+            drawHeader(c);
         }
-
-        drawHeader(c);
     }
 
     @SuppressWarnings("unchecked")
