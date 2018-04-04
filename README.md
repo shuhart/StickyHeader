@@ -1,20 +1,22 @@
 # StickyHeader
-It was done mainly because almost all popular libraries for sticky headers are too complex or offer a lot more features than needed. Some of them also breaks DiffUtils. For performance reason a header view is created only once. View types and click listeners are not supported.
-However, you can customize this view via supplied adapter when a sticky header replaces the previous one.
+
+The StickyHeader was created mainly because most popular libraries for sticky headers are too complicated or offer much more features than needed. Some of these libraries also break DiffUtils. For performance reason, a header view is created only once while view types and click listeners are not supported.
+
+Also, by customizing this view via supplied adapter, a new sticky header will replace the previous one.
 
 <img src="/images/small_demo.gif" alt="Sample" width="300px" />
 
 Usage
 -----
 
-1. Add jcenter() to repositories block in your gradle file.
-2. Add `implementation 'com.shuhart.stickyheader:stickyheader:1.0.3` to your dependencies.
+1. Add jcenter() to repositories block in the gradle file.
+2. Add `implementation 'com.shuhart.stickyheader:stickyheader:1.0.3` to the dependencies.
 3. Look into the sample for additional details on how to use and configure the library.
 
-You should provide an adapter that extends [StickyAdapter](https://github.com/shuhart/StickyHeader/blob/master/stickyheader/src/main/java/com/shuhart/stickyheader/StickyAdapter.java) to the StickyHeaderItemDecorator that is used to create and bind sticky headers.
+An adapter that extends [StickyAdapter](https://github.com/shuhart/StickyHeader/blob/master/stickyheader/src/main/java/com/shuhart/stickyheader/StickyAdapter.java)  is necessary for the StickyHeaderItemDecorator that is used to create and bind sticky headers.
 
 
-After that just attach it to the RecyclerView:
+Then, attach it to the RecyclerView:
 
 ```java
 StickyHeaderItemDecorator decorator = new StickyHeaderItemDecorator(adapter);
@@ -23,8 +25,8 @@ decorator.attachToRecyclerView(recyclerView);
 
 How it works
 -----
-A ViewHolder is created by the adapter to reuse and bind every header.
-A header view is drawn on top of the RecyclerView using onDrawOver() callback of ItemDecoration.
+* A ViewHolder is created by the adapter to reuse and bind every header.
+* A header view is drawn on top of the RecyclerView using onDrawOver() callback of ItemDecoration.
 
 License
 =======
