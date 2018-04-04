@@ -18,7 +18,7 @@ An adapter that extends [StickyAdapter](https://github.com/shuhart/StickyHeader/
 ```java
 @Override
 public int getHeaderPositionForItem(int itemPosition) {
-    // Return a position of a header that represents item at adapter position.
+    // Return a position of a header that represents an item at adapter position.
     // For the header itself return the same itemPosition.
 }
 
