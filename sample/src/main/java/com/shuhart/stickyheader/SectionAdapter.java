@@ -16,7 +16,7 @@ public class SectionAdapter extends StickyAdapter<RecyclerView.ViewHolder, Recyc
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        if (viewType == Section.HEADER) {
+        if (viewType == Section.HEADER || viewType == Section.CUSTOM_HEADER) {
             return new HeaderViewholder(inflater.inflate(R.layout.recycler_view_header_item, parent, false));
         }
         return new ItemViewHolder(inflater.inflate(R.layout.recycler_view_item, parent, false));
@@ -26,10 +26,13 @@ public class SectionAdapter extends StickyAdapter<RecyclerView.ViewHolder, Recyc
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int type = items.get(position).type();
+        int section = items.get(position).sectionPosition();
         if (type == Section.HEADER) {
-            ((HeaderViewholder) holder).textView.setText("Header " + position);
+            ((HeaderViewholder) holder).textView.setText("Header " + section);
+        } else if (type == Section.ITEM){
+            ((ItemViewHolder) holder).textView.setText("Item " + section);
         } else {
-            ((ItemViewHolder) holder).textView.setText("Item " + position);
+            ((HeaderViewholder) holder).textView.setText("Custom header");
         }
     }
 
@@ -45,7 +48,7 @@ public class SectionAdapter extends StickyAdapter<RecyclerView.ViewHolder, Recyc
 
     @Override
     public int getHeaderPositionForItem(int itemPosition) {
-        return items.get(itemPosition).section();
+        return items.get(itemPosition).sectionPosition();
     }
 
     @SuppressLint("SetTextI18n")

@@ -14,7 +14,7 @@ public class SectionItem implements Section {
     }
 
     @Override
-    public int section() {
+    public int sectionPosition() {
         return section;
     }
 }

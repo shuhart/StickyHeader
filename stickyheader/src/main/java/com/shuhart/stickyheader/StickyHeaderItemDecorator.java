@@ -71,10 +71,17 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
             return;
         }
         int overlappedByHeaderPosition = parent.getChildAdapterPosition(viewOverlappedByHeader);
-        if (adapter.getHeaderPositionForItem(overlappedByHeaderPosition) == overlappedByHeaderPosition) {
+        int overlappedHeaderPosition = adapter.getHeaderPositionForItem(overlappedByHeaderPosition);
+        int preOverlappedPosition;
+        if (overlappedByHeaderPosition > 0) {
+            preOverlappedPosition = adapter.getHeaderPositionForItem(overlappedByHeaderPosition - 1);
+        } else {
+            preOverlappedPosition = adapter.getHeaderPositionForItem(topChildPosition);
+        }
+        if (preOverlappedPosition != RecyclerView.NO_POSITION && preOverlappedPosition != overlappedHeaderPosition) {
             updateStickyHeader(topChildPosition, overlappedByHeaderPosition);
             moveHeader(c, viewOverlappedByHeader);
-        } else {
+        } else if (preOverlappedPosition != RecyclerView.NO_POSITION){
             updateStickyHeader(topChildPosition, RecyclerView.NO_POSITION);
             drawHeader(c);
         }
