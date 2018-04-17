@@ -21,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
         decorator.attachToRecyclerView(recyclerView);
         adapter.items = new ArrayList<Section>() {{
             int section = 0;
-            add(new CustomHeader());
-//            add(new SectionHeader(section));
+//            add(new CustomHeader());
             for (int i = 0; i < 28; i++) {
                 if (i < 12) {
                     if (i % 4 == 0) {
