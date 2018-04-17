@@ -93,7 +93,7 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
         if (headerPositionForItem != currentStickyPosition && headerPositionForItem != RecyclerView.NO_POSITION) {
             adapter.onBindHeaderViewHolder(currentStickyHolder, headerPositionForItem);
             currentStickyPosition = headerPositionForItem;
-        } else if (contactChildPosition != RecyclerView.NO_POSITION) {
+        } else if (headerPositionForItem != RecyclerView.NO_POSITION) {
             adapter.onBindHeaderViewHolder(currentStickyHolder, headerPositionForItem);
         }
     }
