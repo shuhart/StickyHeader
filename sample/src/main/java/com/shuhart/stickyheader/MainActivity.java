@@ -1,7 +1,9 @@
 package com.shuhart.stickyheader;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -13,12 +15,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        DividerItemDecoration dividerDecorator = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerDecorator);
+
         SectionAdapter adapter = new SectionAdapter();
         recyclerView.setAdapter(adapter);
+
         StickyHeaderItemDecorator decorator = new StickyHeaderItemDecorator(adapter);
         decorator.attachToRecyclerView(recyclerView);
+
         adapter.items = new ArrayList<Section>() {{
             int section = 0;
 //            add(new CustomHeader());
