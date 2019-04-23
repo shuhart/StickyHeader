@@ -15,6 +15,7 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
     private int currentStickyPosition = RecyclerView.NO_POSITION;
     private RecyclerView recyclerView;
     private RecyclerView.ViewHolder currentStickyHolder;
+    private View lastViewOverlappedByHeader = null;
 
     public StickyHeaderItemDecorator(@NonNull StickyAdapter adapter) {
         this.adapter = adapter;
@@ -68,8 +69,14 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
 
         View viewOverlappedByHeader = getChildInContact(parent, currentStickyHolder.itemView.getBottom());
         if (viewOverlappedByHeader == null) {
-            return;
+            if (lastViewOverlappedByHeader != null) {
+                viewOverlappedByHeader = lastViewOverlappedByHeader;
+            } else {
+                return;
+            }
         }
+        lastViewOverlappedByHeader = viewOverlappedByHeader;
+
         int overlappedByHeaderPosition = parent.getChildAdapterPosition(viewOverlappedByHeader);
         int overlappedHeaderPosition = adapter.getHeaderPositionForItem(overlappedByHeaderPosition);
         int preOverlappedPosition;
