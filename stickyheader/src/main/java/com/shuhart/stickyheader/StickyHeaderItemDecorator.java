@@ -72,7 +72,7 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
             if (lastViewOverlappedByHeader != null) {
                 viewOverlappedByHeader = lastViewOverlappedByHeader;
             } else {
-                return;
+                viewOverlappedByHeader = parent.getChildAt(topChildPosition);
             }
         }
         lastViewOverlappedByHeader = viewOverlappedByHeader;
