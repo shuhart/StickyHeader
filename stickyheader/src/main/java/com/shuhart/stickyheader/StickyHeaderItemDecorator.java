@@ -15,6 +15,7 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
     private int currentStickyPosition = RecyclerView.NO_POSITION;
     private RecyclerView recyclerView;
     private RecyclerView.ViewHolder currentStickyHolder;
+    private View lastViewOverlappedByHeader = null;
 
     public StickyHeaderItemDecorator(@NonNull StickyAdapter adapter) {
         this.adapter = adapter;
@@ -68,8 +69,14 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
 
         View viewOverlappedByHeader = getChildInContact(parent, currentStickyHolder.itemView.getBottom());
         if (viewOverlappedByHeader == null) {
-            return;
+            if (lastViewOverlappedByHeader != null) {
+                viewOverlappedByHeader = lastViewOverlappedByHeader;
+            } else {
+                viewOverlappedByHeader = parent.getChildAt(topChildPosition);
+            }
         }
+        lastViewOverlappedByHeader = viewOverlappedByHeader;
+
         int overlappedByHeaderPosition = parent.getChildAdapterPosition(viewOverlappedByHeader);
         int overlappedHeaderPosition = adapter.getHeaderPositionForItem(overlappedByHeaderPosition);
         int preOverlappedPosition;
@@ -78,13 +85,25 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
         } else {
             preOverlappedPosition = adapter.getHeaderPositionForItem(topChildPosition);
         }
-        if (preOverlappedPosition != RecyclerView.NO_POSITION && preOverlappedPosition != overlappedHeaderPosition) {
+
+        if (preOverlappedPosition == RecyclerView.NO_POSITION) {
+            return;
+        }
+
+        if (preOverlappedPosition != overlappedHeaderPosition && shouldMoveHeader(viewOverlappedByHeader)) {
             updateStickyHeader(topChildPosition, overlappedByHeaderPosition);
             moveHeader(c, viewOverlappedByHeader);
-        } else if (preOverlappedPosition != RecyclerView.NO_POSITION){
+        } else {
             updateStickyHeader(topChildPosition, RecyclerView.NO_POSITION);
             drawHeader(c);
         }
+    }
+
+    // shouldMoveHeader returns the sticky header should move or not.
+    // This method is for avoiding sinking/departing the sticky header into/from top of screen
+    private boolean shouldMoveHeader(View viewOverlappedByHeader) {
+        int dy = (viewOverlappedByHeader.getTop() - viewOverlappedByHeader.getHeight());
+        return (viewOverlappedByHeader.getTop() >= 0 && dy <= 0);
     }
 
     @SuppressWarnings("unchecked")
