@@ -1,4 +1,4 @@
-package com.shuhart.stickyheader;
+package com.shuhart.stickyheader.sample;
 
 import android.support.v7.widget.RecyclerView;
 

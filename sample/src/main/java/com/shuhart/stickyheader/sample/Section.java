@@ -1,4 +1,4 @@
-package com.shuhart.stickyheader;
+package com.shuhart.stickyheader.sample;
 
 public interface Section {
     int HEADER = 0;

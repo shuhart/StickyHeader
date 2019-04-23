@@ -1,10 +1,10 @@
-package com.shuhart.stickyheader;
+package com.shuhart.stickyheader.sample;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-public class BigSectionAdapter extends SectionAdapter {
+public class SmallSectionAdapter extends SectionAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -12,7 +12,7 @@ public class BigSectionAdapter extends SectionAdapter {
             RecyclerView.ViewHolder holder =
                     new HeaderViewholder(inflater.inflate(R.layout.recycler_view_header_item, parent, false));
             ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
-            lp.height = lp.height * 2;
+            lp.height = lp.height / 2;
             holder.itemView.setLayoutParams(lp);
             return holder;
         }

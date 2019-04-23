@@ -1,9 +1,11 @@
-package com.shuhart.stickyheader;
+package com.shuhart.stickyheader.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.shuhart.stickyheader.StickyHeaderItemDecorator;
 
 import java.util.ArrayList;
 
