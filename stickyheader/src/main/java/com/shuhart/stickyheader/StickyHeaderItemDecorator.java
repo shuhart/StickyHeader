@@ -25,8 +25,8 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
         if (this.recyclerView == recyclerView) {
             return; // nothing to do
         }
-        if (recyclerView != null) {
-            destroyCallbacks(recyclerView);
+        if (this.recyclerView != null) {
+            destroyCallbacks(this.recyclerView);
         }
         this.recyclerView = recyclerView;
         if (recyclerView != null) {
