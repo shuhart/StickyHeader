@@ -117,6 +117,7 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
         } else if (headerPositionForItem != RecyclerView.NO_POSITION) {
             adapter.onBindHeaderViewHolder(currentStickyHolder, headerPositionForItem);
         }
+        fixLayoutSize();
     }
 
     private void drawHeader(Canvas c) {
