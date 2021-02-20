@@ -1,8 +1,9 @@
 package com.shuhart.stickyheader.sample;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class BigSectionAdapter extends SectionAdapter {
     @Override

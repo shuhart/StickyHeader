@@ -1,6 +1,6 @@
 package com.shuhart.stickyheader.sample;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class CustomHeader implements Section {
     @Override

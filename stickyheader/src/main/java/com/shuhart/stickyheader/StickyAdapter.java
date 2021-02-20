@@ -1,8 +1,9 @@
 package com.shuhart.stickyheader;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * View types for a sticky header are not supported.
@@ -18,7 +19,7 @@ public abstract class StickyAdapter<SVH extends RecyclerView.ViewHolder,
      * @param itemPosition int. Adapter's position of the item for which to do
      *                     the search of the position of the header item.
      * @return int. Position of the header for an item in the adapter or
-     * {@link RecyclerView.NO_POSITION} (-1) if an item has no header.
+     * (-1) if an item has no header.
      */
     public abstract int getHeaderPositionForItem(int itemPosition);
 
