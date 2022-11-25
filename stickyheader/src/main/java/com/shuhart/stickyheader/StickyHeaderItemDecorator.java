@@ -153,6 +153,9 @@ public class StickyHeaderItemDecorator extends RecyclerView.ItemDecoration {
         recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
+                if (recyclerView == null) {
+					return;
+                }
                 recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 // Specs for parent (RecyclerView)
                 int widthSpec = View.MeasureSpec.makeMeasureSpec(recyclerView.getWidth(), View.MeasureSpec.EXACTLY);
